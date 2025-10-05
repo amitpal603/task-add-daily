@@ -40,6 +40,21 @@ export function Context({ children }) {
       console.error('Error creating todo:', error);
     }
   };
+
+  const deleteTodo = async(id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/task/delete/${id}`,{
+        method: 'DELETE'
+      })
+       if (!res.ok) {
+        console.error('Error deleting todo:', res.status, res.statusText);
+        return;
+      }
+     await getTodo()
+    } catch (error) {
+       console.error('Error deleting todo:', error);
+    }
+  }
   const toggleTodo = (id) => {
     const updateTodo = getData.map((item) => item._id === id ? {...item,complete: !item.complete}: item)
     setGetData(updateTodo)
@@ -58,7 +73,8 @@ export function Context({ children }) {
     getData,
     activeTask,
     completeTask,
-    toggleTodo
+    toggleTodo,
+    deleteTodo
   };
 
   return <Todos.Provider value={store}>{children}</Todos.Provider>;

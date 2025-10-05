@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Check, Trash2, Plus } from 'lucide-react';
 import { Todos } from '../context/Context';
+import DeleteTodo from './DeleteTodo';
 
 function TodoList() {
-  const { getData, activeTask, completeTask, toggleTodo } = useContext(Todos);
+  const { getData, activeTask, completeTask, toggleTodo,deleteTodo } = useContext(Todos);
   const [filter, setFilter] = useState('all');
+  const [isOpen,setIsOpen] = useState(false)
+  const [select,setSelect] = useState(null)
 
   const filteredTodoData =
     filter === 'all'
@@ -12,7 +15,11 @@ function TodoList() {
       : filter === 'active'
       ? activeTask
       : completeTask;
-
+ 
+ const sendDeleteData = (todo) => {
+  setSelect(todo)
+  setIsOpen(true)
+ }
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 py-10 px-6">
       <div className="max-w-5xl mx-auto flex flex-col h-[90vh]">
@@ -102,7 +109,7 @@ function TodoList() {
                 </div>
 
                 <div className="flex items-center gap-3 ml-4">
-                  <button className="p-2 text-red-500 hover:bg-red-100 rounded-full transition">
+                  <button onClick={() => sendDeleteData(todo)} className=" hover:cursor-pointer p-2 text-red-500 hover:bg-red-100 rounded-full transition">
                     <Trash2 className="w-5 h-5" />
                   </button>
                 </div>
@@ -134,6 +141,12 @@ function TodoList() {
           animation: fade-in 0.6s ease-out;
         }
       `}</style>
+      <DeleteTodo
+      open={isOpen}
+      setOpen={setIsOpen}
+      select={select}
+      del={deleteTodo}
+      />
     </div>
   );
 }
