@@ -26,7 +26,7 @@ export function Context({ children }) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(inputData), // ✅ Send directly
+        body: JSON.stringify(inputData) // ✅ Send directly
       });
 
       if (!res.ok) {
@@ -55,9 +55,26 @@ export function Context({ children }) {
        console.error('Error deleting todo:', error);
     }
   }
-  const toggleTodo = (id) => {
-    const updateTodo = getData.map((item) => item._id === id ? {...item,complete: !item.complete}: item)
-    setGetData(updateTodo)
+  // update todo
+  const toggleTodo = async(id,currentState) => {
+   try {
+    const res = await fetch(`http://localhost:3000/api/task/update/${id}`,{
+    method: 'PUT',
+    headers:{
+       'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({complete : !currentState})
+   })
+
+   if (!res.ok) {
+        console.error('Error creating todo:', res.status, res.statusText);
+        return;
+      }
+
+      await getTodo()
+   } catch (error) {
+     console.error('Error update todo:', error);
+   }
   }
 
   const activeTask = getData.filter((todo) => !todo.complete)

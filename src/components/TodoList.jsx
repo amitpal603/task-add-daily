@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Check, Trash2, Plus } from 'lucide-react';
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { Todos } from '../context/Context';
 import DeleteTodo from './DeleteTodo';
 
@@ -75,7 +76,7 @@ function TodoList() {
               >
                 <div className="flex gap-5 items-center">
                   <button
-                    onClick={() => toggleTodo(todo._id)}
+                    onClick={() => toggleTodo(todo._id,todo.complete)}
                     className={`h-5 w-5 border-2 flex justify-center items-center p-2 text-green-600 rounded-full transition
                       ${
                         todo.complete
@@ -83,7 +84,7 @@ function TodoList() {
                           : 'border-gray-300 hover:border-purple-500'
                       }`}
                   >
-                    {todo.complete && <Check className="w-5 h-5 text-white" />}
+                    {todo.complete && <IoMdCheckmarkCircleOutline className='h-5 w-5 text-green-500'/>}
                   </button>
 
                   <div>
@@ -108,10 +109,11 @@ function TodoList() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 ml-4">
+                <div className="flex items-center gap-1 ml-4 flex-col">
                   <button onClick={() => sendDeleteData(todo)} className=" hover:cursor-pointer p-2 text-red-500 hover:bg-red-100 rounded-full transition">
                     <Trash2 className="w-5 h-5" />
                   </button>
+                  <p className='text-base'>{todo.Date.split('T')[0]}</p>
                 </div>
               </div>
             ))
