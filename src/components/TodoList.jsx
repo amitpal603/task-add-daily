@@ -5,7 +5,7 @@ import { Todos } from '../context/Context';
 import DeleteTodo from './DeleteTodo';
 
 function TodoList() {
-  const { getData, activeTask, completeTask, toggleTodo,deleteTodo } = useContext(Todos);
+  const { getData, activeTask, completeTask, toggleTodo,deleteTodo,setSearch,searchTask } = useContext(Todos);
   const [filter, setFilter] = useState('all');
   const [isOpen,setIsOpen] = useState(false)
   const [select,setSelect] = useState(null)
@@ -46,7 +46,9 @@ function TodoList() {
             <div className="text-gray-500 text-sm mt-1 font-bold">Completed</div>
           </div>
         </div>
-
+          <div className='bg-white rounded-xl p-3 shadow-md justify-center mb-3'>
+            <input onChange={(e) => setSearch(e.target.value)} type="text" placeholder='Search Your Task'className='bg-white outline-none w-full pl-3' />
+          </div>
         {/* Filter Buttons */}
         <div className="flex flex-wrap gap-3 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
           {['all', 'active', 'complete'].map((type) => (
@@ -67,8 +69,8 @@ function TodoList() {
 
         {/* Task List (Scrollable) */}
         <div className="bg-white rounded-2xl shadow-lg p-6 space-y-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-gray-100">
-          {filteredTodoData && filteredTodoData.length > 0 ? (
-            filteredTodoData.map((todo) => (
+          { filteredTodoData && filteredTodoData.length > 0 ? (
+           filteredTodoData.map((todo) => (
               <div
                 key={todo._id}
                 className="flex items-start justify-between bg-gray-50 p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all"

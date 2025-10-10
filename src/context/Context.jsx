@@ -6,7 +6,7 @@ export const Todos = createContext();
 export function Context({ children }) {
   const [getData, setGetData] = useState([]);
   const { register, handleSubmit, reset } = useForm();
-
+  const [search,setSearch] = useState(" ")
   // ✅ Fetch all todos
   const getTodo = async () => {
     try {
@@ -82,7 +82,16 @@ export function Context({ children }) {
   useEffect(() => {
     getTodo();
   }, []);
+const searchTask = getData.filter((todo) => {
+  const searchTerm = search.toLowerCase()
 
+  if(searchTerm === " ") return true
+
+  return (
+    todo.title.toLowerCase().includes(searchTerm) ||
+    todo.description.toLowerCase().includes(searchTerm)
+  )
+})
   const store = {
     handleSubmit,
     createTodo,
@@ -91,7 +100,9 @@ export function Context({ children }) {
     activeTask,
     completeTask,
     toggleTodo,
-    deleteTodo
+    deleteTodo,
+    setSearch,
+    searchTask
   };
 
   return <Todos.Provider value={store}>{children}</Todos.Provider>;
