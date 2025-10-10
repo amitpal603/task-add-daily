@@ -9,7 +9,6 @@ function TodoList() {
   const [filter, setFilter] = useState('all');
   const [isOpen,setIsOpen] = useState(false)
   const [select,setSelect] = useState(null)
-
   const filteredTodoData =
     filter === 'all'
       ? getData
@@ -113,7 +112,6 @@ function TodoList() {
                   <button onClick={() => sendDeleteData(todo)} className=" hover:cursor-pointer p-2 text-red-500 hover:bg-red-100 rounded-full transition">
                     <Trash2 className="w-5 h-5" />
                   </button>
-                  <p className='text-base'>{todo.Date.split('T')[0]}</p>
                 </div>
               </div>
             ))
