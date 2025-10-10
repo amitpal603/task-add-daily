@@ -35,15 +35,15 @@ function TodoList() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
           <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
             <div className="text-4xl font-bold text-purple-600">{getData.length}</div>
-            <div className="text-gray-500 text-sm mt-1">Total Tasks</div>
+            <div className="text-gray-500 text-sm mt-1 font-bold">Total Tasks</div>
           </div>
           <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
             <div className="text-4xl font-bold text-blue-600">{activeTask.length}</div>
-            <div className="text-gray-500 text-sm mt-1">Active</div>
+            <div className="text-gray-500 text-sm mt-1 font-bold">Active</div>
           </div>
           <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
             <div className="text-4xl font-bold text-green-600">{completeTask.length}</div>
-            <div className="text-gray-500 text-sm mt-1">Completed</div>
+            <div className="text-gray-500 text-sm mt-1 font-bold">Completed</div>
           </div>
         </div>
 
