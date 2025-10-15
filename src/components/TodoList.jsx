@@ -55,14 +55,14 @@ function TodoList() {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-3 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
+        <div className="flex flex-wrap gap-15 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
           {[{ to: '/', label: 'All' }, { to: '/active', label: 'Active' }, { to: '/complete', label: 'Complete' }].map(
             (link, index) => (
               <button key={index}>
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `flex-1 min-w-[100px] py-2 px-4 rounded-lg font-semibold text-sm sm:text-base transition-all duration-200
+                    `flex-1 min-w-[100px] py-2 px-13  rounded-lg font-semibold text-sm sm:text-base transition-all duration-200
              ${
                isActive
                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
