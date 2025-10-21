@@ -55,7 +55,7 @@ function TodoList() {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-15 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
+        <div className="flex flex-wrap gap-10 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
           {[{ to: '/', label: 'All' }, { to: '/active', label: 'Active' }, { to: '/complete', label: 'Complete' }].map(
             (link, index) => (
               <button key={index}>
