@@ -10,7 +10,7 @@ export function Context({ children }) {
   // ✅ Fetch all todos
   const getTodo = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/task/get');
+      const res = await fetch('https://daily-task-zohp.onrender.com/api/task/get');
       const data = await res.json();
       setGetData(data.todo || []); // fallback for safety
     } catch (error) {
@@ -21,7 +21,7 @@ export function Context({ children }) {
   // ✅ Create new todo (takes form data directly)
   const createTodo = async (inputData) => {
     try {
-      const res = await fetch('http://localhost:3000/api/task/create', {
+      const res = await fetch('https://daily-task-zohp.onrender.com/api/task/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ export function Context({ children }) {
 
   const deleteTodo = async(id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/task/delete/${id}`,{
+      const res = await fetch(`https://daily-task-zohp.onrender.com/api/task/delete/${id}`,{
         method: 'DELETE'
       })
        if (!res.ok) {
@@ -58,7 +58,7 @@ export function Context({ children }) {
   // update todo
   const toggleTodo = async(id,currentState) => {
    try {
-    const res = await fetch(`http://localhost:3000/api/task/update/${id}`,{
+    const res = await fetch(`https://daily-task-zohp.onrender.com/api/task/update/${id}`,{
     method: 'PUT',
     headers:{
        'Content-Type': 'application/json',
