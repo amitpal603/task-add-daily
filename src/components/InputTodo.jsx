@@ -12,7 +12,7 @@ function InputTodo() {
   };
 
   return (
-    <div className="min-h-screen flex  justify-center p-3 sm:p-4 md:p-6">
+    <div className=" flex  justify-center p-3 sm:p-4 md:p-6">
       <div className="w-full max-w-md">
         <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100">
           <div className="mb-5 sm:mb-6">
