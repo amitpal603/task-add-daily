@@ -19,50 +19,51 @@ function TodoList() {
   };
 
   return (
-    <div className="min-h-screen  py-10 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col h-[90vh]">
+    <div className="min-h-screen py-4 sm:py-6 md:py-10 px-3 sm:px-4 md:px-6">
+      <div className="max-w-5xl mx-auto flex flex-col h-[calc(100vh-2rem)] sm:h-[calc(100vh-3rem)] md:h-[90vh]">
         {/* Header */}
-        <div className="text-center mb-10 animate-fade-in">
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-2">
+        <div className="text-center mb-4 sm:mb-6 md:mb-10 animate-fade-in">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 mb-1 sm:mb-2">
             My Tasks
           </h1>
-          <p className="text-gray-600">Stay organized and productive</p>
+          <p className="text-gray-600 text-xs sm:text-sm md:text-base">Stay organized and productive</p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-4xl font-bold text-purple-600">{getData.length}</div>
-            <div className="text-gray-500 text-sm mt-1 font-bold">Total Tasks</div>
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
+          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600">{getData.length}</div>
+            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Total</div>
           </div>
-          <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-4xl font-bold text-blue-600">{activeTask.length}</div>
-            <div className="text-gray-500 text-sm mt-1 font-bold">Active</div>
+          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600">{activeTask.length}</div>
+            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Active</div>
           </div>
-          <div className="bg-white rounded-xl p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-4xl font-bold text-green-600">{completeTask.length}</div>
-            <div className="text-gray-500 text-sm mt-1 font-bold">Completed</div>
+          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
+            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600">{completeTask.length}</div>
+            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Done</div>
           </div>
         </div>
 
-        <div className="bg-white rounded-xl p-3 shadow-md justify-center mb-3">
+        {/* Search Bar */}
+        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-md mb-3 sm:mb-4 md:mb-3">
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Search Your Task"
-            className="bg-white outline-none w-full pl-3"
+            className="bg-white outline-none w-full pl-2 sm:pl-3 text-sm sm:text-base"
           />
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-10 mb-8 bg-white rounded-xl p-3 shadow-md justify-center">
+        <div className="flex flex-wrap gap-2 sm:gap-4 md:gap-10 mb-4 sm:mb-6 md:mb-8 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-md justify-center">
           {[{ to: '/', label: 'All' }, { to: '/active', label: 'Active' }, { to: '/complete', label: 'Complete' }].map(
             (link, index) => (
-              <button key={index}>
+              <button key={index} className="flex-1 sm:flex-none">
                 <NavLink
                   to={link.to}
                   className={({ isActive }) =>
-                    `flex-1 min-w-[100px] py-2 px-13  rounded-lg font-semibold text-sm sm:text-base transition-all duration-200
+                    `block w-full sm:min-w-[100px] py-2 px-4 sm:px-6 md:px-8 rounded-lg font-semibold text-xs sm:text-sm md:text-base transition-all duration-200
              ${
                isActive
                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg scale-105'
@@ -78,7 +79,7 @@ function TodoList() {
         </div>
 
         {/* Task List */}
-        <div className="flex-1 overflow-y-auto pr-2">
+        <div className="flex-1 overflow-y-auto pr-1 sm:pr-2 -mr-1 sm:-mr-2">
           <Routes>
             <Route path="/" element={<AllTodo sendDelete={sendDeleteData}/>} />
             <Route path="/active" element={<ActiveTodo sendDelete={sendDeleteData}/>} />
@@ -86,8 +87,10 @@ function TodoList() {
           </Routes>
         </div>
 
-        {/* Add Button */}
-        
+        {/* Add Button - Hidden on mobile, shown on larger screens */}
+        <button className="hidden sm:flex fixed bottom-6 md:bottom-8 right-6 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:shadow-purple-500/50 items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-90">
+          <Plus className="w-6 h-6 md:w-8 md:h-8" />
+        </button>
       </div>
 
       <style>{`
@@ -97,6 +100,24 @@ function TodoList() {
         }
         .animate-fade-in {
           animation: fade-in 0.6s ease-out;
+        }
+        
+        /* Custom scrollbar for webkit browsers */
+        .overflow-y-auto::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-thumb {
+          background: #d1d5db;
+          border-radius: 3px;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+          background: #9ca3af;
         }
       `}</style>
 
