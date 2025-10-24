@@ -19,7 +19,7 @@ function TodoList() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 py-10 px-6">
+    <div className="min-h-screen  py-10 px-6">
       <div className="max-w-5xl mx-auto flex flex-col h-[90vh]">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">
@@ -78,16 +78,16 @@ function TodoList() {
         </div>
 
         {/* Task List */}
-        <Routes>
-          <Route path="/" element={<AllTodo sendDelete={sendDeleteData}/>} />
-          <Route path="/active" element={<ActiveTodo sendDelete={sendDeleteData}/>} />
-          <Route path="/complete" element={<CompleteTodo sendDelete={sendDeleteData}/>} />
-        </Routes>
+        <div className="flex-1 overflow-y-auto pr-2">
+          <Routes>
+            <Route path="/" element={<AllTodo sendDelete={sendDeleteData}/>} />
+            <Route path="/active" element={<ActiveTodo sendDelete={sendDeleteData}/>} />
+            <Route path="/complete" element={<CompleteTodo sendDelete={sendDeleteData}/>} />
+          </Routes>
+        </div>
 
         {/* Add Button */}
-        <button className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:shadow-purple-500/50 flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-90">
-          <Plus className="w-8 h-8" />
-        </button>
+        
       </div>
 
       <style>{`
