@@ -7,12 +7,14 @@ import { NavLink, Routes, Route } from 'react-router-dom';
 import AllTodo from './AllTodo';
 import ActiveTodo from './ActiveTodo';
 import CompleteTodo from './CompleteTodo';
+import { CiDark } from "react-icons/ci";
+import { CiLight } from "react-icons/ci";
 
 function TodoList() {
-  const { getData, activeTask, completeTask, deleteTodo, setSearch } = useContext(Todos);
+  const { getData, activeTask, completeTask, deleteTodo, setSearch,Toggle,isMode } = useContext(Todos);
   const [isOpen, setIsOpen] = useState(false);
   const [select, setSelect] = useState(null);
-
+ console.log(isMode)
   const sendDeleteData = (todo) => {
     setSelect(todo);
     setIsOpen(true);
@@ -31,17 +33,17 @@ function TodoList() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-8">
-          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600">{getData.length}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Total</div>
+          <div className={` rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all ${isMode ? 'bg-gray-400 hover:shadow-lg hover:shadow-purple-300 transition-all' : 'bg-white'}`}>
+            <div className={` ${isMode ? 'text-purple-600' : ''} text-2xl sm:text-3xl md:text-4xl font-bold text-purple-600 `}>{getData.length}</div>
+            <div className={`text-gray-500 text-xs sm:text-sm mt-1 font-bold ${isMode ? 'text-white' : ''}`}>Total</div>
           </div>
-          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600">{activeTask.length}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Active</div>
+          <div className={` rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all ${isMode ? 'bg-gray-400 hover:shadow-lg hover:shadow-blue-300 transition-all' : 'bg-white'}`}>
+            <div className={`text-2xl sm:text-3xl md:text-4xl font-bold text-blue-600 ${isMode ? 'text-blue-600 ' : ''}`}>{activeTask.length}</div>
+            <div className={` text-xs sm:text-sm mt-1 font-bold ${isMode ? 'text-white' : ''}`} >Active</div>
           </div>
-          <div className="bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all">
-            <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-green-600">{completeTask.length}</div>
-            <div className="text-gray-500 text-xs sm:text-sm mt-1 font-bold">Done</div>
+          <div className={` rounded-lg sm:rounded-xl p-3 sm:p-4 md:p-5 shadow-md text-center hover:shadow-lg transition-all ${isMode ? 'bg-gray-400 hover:shadow-lg hover:shadow-green-300 transition-all' : 'bg-white'}`}>
+            <div className={`text-2xl sm:text-3xl md:text-4xl font-bold text-green-600 ${isMode ? 'text-green-600 ' : ''}`}>{completeTask.length}</div>
+            <div className={` text-xs sm:text-sm mt-1 font-bold ${isMode ? 'text-white' : ''}`}>Done</div>
           </div>
         </div>
 
@@ -81,15 +83,15 @@ function TodoList() {
         {/* Task List */}
         <div className="flex-1 overflow-y-auto pr-1 sm:pr-2 -mr-1 sm:-mr-2">
           <Routes>
-            <Route path="/" element={<AllTodo sendDelete={sendDeleteData}/>} />
-            <Route path="/active" element={<ActiveTodo sendDelete={sendDeleteData}/>} />
-            <Route path="/complete" element={<CompleteTodo sendDelete={sendDeleteData}/>} />
+            <Route path="/" element={<AllTodo sendDelete={sendDeleteData} isMode={isMode}/>} />
+            <Route path="/active" element={<ActiveTodo sendDelete={sendDeleteData} isMode={isMode}/>} />
+            <Route path="/complete" element={<CompleteTodo sendDelete={sendDeleteData} isMode={isMode}/>} />
           </Routes>
         </div>
 
-        {/* Add Button - Hidden on mobile, shown on larger screens */}
-        <button className="hidden sm:flex fixed bottom-6 md:bottom-8 right-6 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:shadow-purple-500/50 items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-90">
-          <Plus className="w-6 h-6 md:w-8 md:h-8" />
+        {/*dark and light mode implement */}
+        <button onClick={Toggle} className=" flex  sm:flex fixed bottom-6 md:bottom-8 right-6 md:right-8 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full shadow-2xl hover:shadow-purple-500/50 items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-90">
+          {isMode ? <CiLight className='text-3xl'/> : <CiDark className='text-3xl'/>}
         </button>
       </div>
 

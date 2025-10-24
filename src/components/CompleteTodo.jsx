@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Todos } from '../context/Context'
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { Check, Trash2, Plus } from 'lucide-react';
-function CompleteTodo({sendDelete}) {
+function CompleteTodo({sendDelete,isMode}) {
     const {completeTask,toggleTodo} = useContext(Todos)
   return (
     <div>

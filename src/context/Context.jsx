@@ -7,6 +7,11 @@ export function Context({ children }) {
   const [getData, setGetData] = useState([]);
   const { register, handleSubmit, reset } = useForm();
   const [search,setSearch] = useState(" ")
+  const [isMode,setIsMode] = useState(false)
+
+  const  Toggle = () => {
+    setIsMode((preMode) => !preMode)
+  }
   // ✅ Fetch all todos
   const getTodo = async () => {
     try {
@@ -102,7 +107,9 @@ const searchTask = getData.filter((todo) => {
     toggleTodo,
     deleteTodo,
     setSearch,
-    searchTask
+    searchTask,
+    Toggle,
+    isMode
   };
 
   return <Todos.Provider value={store}>{children}</Todos.Provider>;

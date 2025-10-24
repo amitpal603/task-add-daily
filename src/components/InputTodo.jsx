@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Todos } from '../context/Context';
 
 function InputTodo() {
-  const { register, handleSubmit, createTodo, getData } = useContext(Todos);
+  const { register, handleSubmit, createTodo, getData,isMode } = useContext(Todos);
 
   console.log(getData);
 
@@ -14,7 +14,7 @@ function InputTodo() {
   return (
     <div className=" flex  justify-center p-3 sm:p-4 md:p-6">
       <div className="w-full max-w-md">
-        <div className="bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100">
+        <div className={`bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100 ${isMode ? 'bg-gray-500 text-white' : 'bg-white text-black'}`}>
           <div className="mb-5 sm:mb-6">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Add New Todo</h2>
             <p className="text-gray-500 text-xs sm:text-sm">Create a new task to stay organized</p>
