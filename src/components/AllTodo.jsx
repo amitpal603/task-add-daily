@@ -6,12 +6,12 @@ function AllTodo({sendDelete,isMode}) {
     const {toggleTodo,getData,searchTask} = useContext(Todos)
   return (
     <div>
-        <div className="bg-white rounded-2xl shadow-lg p-6 space-y-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-gray-100">
+        <div className={` ${isMode ? 'bg-gray-400' : 'bg-white'} rounded-2xl shadow-lg p-6 space-y-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-gray-100`}>
           { getData && getData.length > 0 ? (
            searchTask.map((todo) => (
               <div
                 key={todo._id}
-                className="flex items-start justify-between bg-gray-50 p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all"
+                className={`flex items-start justify-between ${isMode ? 'bg-gray-300 hover:shadow-purple-500' : 'bg-white'} p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all`}
               >
                 <div className="flex gap-5 items-center">
                   <button
@@ -20,7 +20,7 @@ function AllTodo({sendDelete,isMode}) {
                       ${
                         todo.complete
                           ? 'bg-green-500 border-green-500'
-                          : 'border-gray-300 hover:border-purple-500'
+                          : `${isMode ? 'border-white' : 'border-gray-400'} hover:border-purple-500`
                       }`}
                   >
                     {todo.complete && <IoMdCheckmarkCircleOutline className='h-5 w-5 text-green-500'/>}
@@ -30,7 +30,7 @@ function AllTodo({sendDelete,isMode}) {
                     <h3
                       className={`text-lg font-semibold ${
                         todo.complete
-                          ? 'line-through text-gray-500'
+                          ? `line-through ${isMode ? '' : 'text-gray-500'} `
                           : 'text-gray-800'
                       }`}
                     >
@@ -39,8 +39,8 @@ function AllTodo({sendDelete,isMode}) {
                     <p
                       className={`text-sm mt-1 ${
                         todo.complete
-                          ? 'line-through text-gray-400'
-                          : 'text-gray-500'
+                          ? `line-through ${isMode ? '' : 'text-gray-500'}`
+                          : 'text-gray-600'
                       }`}
                     >
                       {todo.description || 'No description provided'}

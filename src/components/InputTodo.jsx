@@ -14,15 +14,15 @@ function InputTodo() {
   return (
     <div className=" flex  justify-center p-3 sm:p-4 md:p-6">
       <div className="w-full max-w-md">
-        <div className={`bg-white rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100 ${isMode ? 'bg-gray-500 text-white' : 'bg-white text-black'}`}>
+        <div className={` rounded-xl sm:rounded-2xl shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100 ${isMode ? 'bg-gray-500 text-white shadow-lg shadow-purple-400' : 'bg-white text-black'}`}>
           <div className="mb-5 sm:mb-6">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2">Add New Todo</h2>
-            <p className="text-gray-500 text-xs sm:text-sm">Create a new task to stay organized</p>
+            <h2 className={`text-2xl sm:text-3xl font-bold text-gray-800 mb-1 sm:mb-2 ${isMode ? 'text-white' : ''}`}>Add New Todo</h2>
+            <p className={`${isMode ? 'text-white' : 'text-gray-500'} font-bold  text-xs sm:text-sm`}>Create a new task to stay organized</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-5">
             <div>
-              <label htmlFor="title" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+              <label htmlFor="title" className={` ${isMode ? 'text-white' : 'text-gray-500'} block text-xs sm:text-sm font-medium  mb-1.5 sm:mb-2`}>
                 Title
               </label>
               <input
@@ -30,13 +30,13 @@ function InputTodo() {
                 id="title"
                 type="text"
                 placeholder="Enter your task title"
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-800 placeholder-gray-400 text-sm sm:text-base"
+                className={`w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 ${isMode ? 'placeholder:text-white text-white' : 'text-gray-500 placeholder:text-gray-500'} text-sm sm:text-base`}
                 required
               />
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1.5 sm:mb-2">
+              <label htmlFor="description" className={`block text-xs sm:text-sm font-medium  mb-1.5 sm:mb-2 ${isMode ? 'text-white' : 'text-gray-500'}`}>
                 Description
               </label>
               <textarea
@@ -44,13 +44,13 @@ function InputTodo() {
                 {...register('description')}
                 placeholder="Add more details"
                 rows="3"
-                className="w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition duration-200 text-gray-800 placeholder-gray-400 resize-none text-sm sm:text-base"
+                className={` ${isMode ? ' placeholder:text-white text-white':' placeholder:text-gray-500 text-white'} w-full px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition duration-200  resize-none text-sm sm:text-base`}
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2.5 sm:py-3 px-5 sm:px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform transition duration-200 active:scale-95 sm:hover:scale-105 shadow-lg text-sm sm:text-base"
+              className=" hover:cursor-pointer w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold py-2.5 sm:py-3 px-5 sm:px-6 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transform transition duration-200 active:scale-95 sm:hover:scale-105 shadow-lg text-sm sm:text-base"
             >
               Add Todo
             </button>

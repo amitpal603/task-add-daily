@@ -6,12 +6,12 @@ function ActiveTodo({sendDelete,isMode}) {
     const {activeTask,toggleTodo} = useContext(Todos)
   return (
     <div>
-       <div className="bg-white rounded-2xl shadow-lg p-6 space-y-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-gray-100">
+       <div className={` ${isMode ? 'bg-gray-400' : 'bg-white'} rounded-2xl shadow-lg p-6 space-y-4 flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-purple-400 scrollbar-track-gray-100`}>
           { activeTask && activeTask.length > 0 ? (
            activeTask.map((todo) => (
               <div
                 key={todo._id}
-                className="flex items-start justify-between bg-gray-50 p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all"
+                className={`flex items-start justify-between ${isMode ? 'bg-gray-300 hover:shadow-purple-500' : 'bg-white'} p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all`}
               >
                 <div className="flex gap-5 items-center">
                   <button
@@ -20,7 +20,7 @@ function ActiveTodo({sendDelete,isMode}) {
                       ${
                         todo.complete
                           ? 'bg-green-500 border-green-500'
-                          : 'border-gray-300 hover:border-purple-500'
+                          : `${isMode ? 'border-white' : 'border-gray-400'} hover:border-purple-500`
                       }`}
                   >
                     {todo.complete && <IoMdCheckmarkCircleOutline className='h-5 w-5 text-green-500'/>}
@@ -58,10 +58,8 @@ function ActiveTodo({sendDelete,isMode}) {
           ) : (
             <div className="text-center py-16">
               <div className="text-6xl mb-4 animate-bounce">📝</div>
-              <p className="text-gray-500 text-lg">No tasks found</p>
-              <p className="text-gray-400 text-sm mt-2">
-                Click the + button to add your first task
-              </p>
+              <p className={`${ isMode ? 'text-white':'text-gray-500'} text-lg`}>No tasks found</p>
+             
             </div>
           )}
         </div>

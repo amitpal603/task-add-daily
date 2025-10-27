@@ -48,17 +48,17 @@ function TodoList() {
         </div>
 
         {/* Search Bar */}
-        <div className="bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-md mb-3 sm:mb-4 md:mb-3">
+        <div className={` ${isMode ? 'bg-gray-400' : 'bg-white'}  shadow-purple-200 shadow-lg rounded-lg sm:rounded-xl p-2 sm:p-3  mb-3 sm:mb-4 md:mb-3`}>
           <input
             onChange={(e) => setSearch(e.target.value)}
             type="text"
             placeholder="Search Your Task"
-            className="bg-white outline-none w-full pl-2 sm:pl-3 text-sm sm:text-base"
+            className={` ${isMode ? ' placeholder:text-white text-white bg-gray-400' : 'text-gray-500 placeholder:text-gray-500'}  outline-none w-full pl-2 sm:pl-3 text-sm sm:text-base`}
           />
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-2 sm:gap-4 md:gap-10 mb-4 sm:mb-6 md:mb-8 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-md justify-center">
+        <div className={`flex flex-wrap gap-2 sm:gap-4 md:gap-10 mb-4 sm:mb-6 md:mb-8 ${isMode ? 'bg-gray-400' : 'bg-white'} rounded-lg sm:rounded-xl p-2 sm:p-3 shadow-md justify-center`}>
           {[{ to: '/', label: 'All' }, { to: '/active', label: 'Active' }, { to: '/complete', label: 'Complete' }].map(
             (link, index) => (
               <button key={index} className="flex-1 sm:flex-none">
